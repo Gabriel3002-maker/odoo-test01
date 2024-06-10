@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  web:
+    image: odoo:16
+    ports:
+      - "8083:8069"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+
+volumes:
+  odoo-web-data:

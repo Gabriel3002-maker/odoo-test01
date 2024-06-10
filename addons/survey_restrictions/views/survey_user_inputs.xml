@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <record id="survey_user_input_view_form_inherit_survey_restrictions" model="ir.ui.view">
+            <field name="name">survey.survey.view.form.inherit.survey.restrictions</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="is_appraisal" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('is_appraisal','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('is_appraisal','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='access_token']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('is_appraisal','=',True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="survey_user_input_view_tree_inherit_survey_restrictions" model="ir.ui.view">
+            <field name="name">survey.survey.view.form.inherit.survey.restrictions</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="is_appraisal" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('is_appraisal','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('is_appraisal','=',True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

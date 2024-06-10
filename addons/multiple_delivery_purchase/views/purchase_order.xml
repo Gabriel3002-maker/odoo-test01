@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="purchase_order_form_inherit_multiple_delivery_purchase" model="ir.ui.view">
+            <field name="name">purchase.order.view.form_inherit_crud</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='picking_type_id']" position="after">
+                    <field name="allow_multiple_picking" />
+                </xpath>
+                <xpath expr="//field[@name='picking_type_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('allow_multiple_picking','=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//page[@name='products']//field[@name='order_line']//tree//field[@name='product_qty']" position="before">
+                    <field name="allow_multiple_picking" invisible="1"/>
+                    <field name="delivery_to" force_save="1" readonly="0" domain="[('code','=','incoming')]" attrs="{'invisible': [('allow_multiple_picking','=', False)], 'required': [('allow_multiple_picking','=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

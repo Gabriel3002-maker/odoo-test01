@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="product_template_form_inherit_multiple_delivery_purchase" model="ir.ui.view">
+            <field name="name">product.template.view.form_inherit_crud</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="delivery_to" attrs="{'invisible':[('purchase_ok','=',False)]}" 
+                        domain="[('code','=','incoming')]" options="{'no_create': True, 'no_edit': True}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
