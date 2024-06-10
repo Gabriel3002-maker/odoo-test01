@@ -4,7 +4,7 @@ services:
   web:
     image: odoo:16
     ports:
-      - "8083:8069"
+      - "8083:8083"
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
