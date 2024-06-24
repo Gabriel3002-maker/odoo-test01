@@ -4,7 +4,7 @@ services:
   sigtca_db:
     image: postgres:15.0
     restart: always
-    container_name: sigtca_db_main_test
+    container_name: sigtca_db_main_ambiotec
     ports:
       - 5435:5432
     networks:
@@ -19,7 +19,7 @@ services:
   odoo:
     image: odoo:16.0
     restart: always
-    container_name: sigtca_main_test
+    container_name: sigtca_main_ambiotec
     ports:
       - 8083:8083
     networks:
