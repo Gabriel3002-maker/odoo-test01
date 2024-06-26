@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="appraisal_ask_feedback_form_inherit" model="ir.ui.view">
+            <field name="name">appraisal.ask.feedback.form.inherit</field>
+            <field name="model">appraisal.ask.feedback</field>
+            <field name="inherit_id" ref="hr_appraisal_survey.appraisal_ask_feedback_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_ids']" position="after">
+                    <field name="domain_employee_ids" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='employee_ids']" position="attributes">
+                    <attribute name="domain">[('id','in',domain_employee_ids)]</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

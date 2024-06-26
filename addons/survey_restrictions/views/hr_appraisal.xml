@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="hr_appraisal_form_inherit_survey_restrictions" model="ir.ui.view">
+            <field name="name">hr.appraisal.form.inherit.survey.restrictions</field>
+            <field name="model">hr.appraisal</field>
+            <field name="inherit_id" ref="hr_appraisal.view_hr_appraisal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="generate_skill_info" class="oe_highlight" string="Generar habilidades" type="object"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="history_skill" string="Historial de habilidades">
+                        <field name="skill_history_id">
+                            <tree create="0" edit="0">
+                                <field name="date"/>
+                                <field name="skill_id"/>
+                                <field name="skill_level_id" invisible="1"/>
+                                <field name="level_progress" widget="progressbar"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

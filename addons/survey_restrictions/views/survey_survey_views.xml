@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <record id="survey_survey_view_form_inherit_survey_restrictions" model="ir.ui.view">
+            <field name="name">survey.survey.view.form.inherit.survey.restrictions</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="hr_appraisal_survey.survey_survey_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='is_appraisal']" position="attributes">
+                    <attribute name="groups">survey.group_survey_manager</attribute>
+                    <attribute name="attrs">{'invisible': [('answer_done_count','&gt;',0)]}</attribute>
+                    <attribute name="string">RRHH (Visible SOLO RRHH)</attribute>
+
+                </xpath>
+                <xpath expr="//field[@name='is_appraisal']" position="after">
+                    <field name="show_only_admin" string="ADMIN (Encuesta Anónima)" invisible="0" />
+                </xpath>
+            </field>
+        </record>
+        <record id="survey_survey_view_form_inherit_survey" model="ir.ui.view">
+            <field name="name">survey.survey.view.form.inherit.survey.restrictions</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='options']//group[@name='questions']" position="inside">
+                    <field name="evalution_employee"/>
+                </xpath>
+                <xpath expr="//field[@name='question_and_page_ids']//tree//field[@name='question_type']" position="after">
+                    <field name="evalution_employee" invisible="1"/>
+                    <field name="skill_id" attrs="{'invisible':[('evalution_employee','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="survey_survey_question_view_form_inherit_survey" model="ir.ui.view">
+            <field name="name">survey.question.view.form.inherit.survey.restrictions</field>
+            <field name="model">survey.question</field>
+            <field name="inherit_id" ref="survey.survey_question_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='question_type']" position="before">
+                    <field name="evalution_employee" invisible="1"/>
+                    <field name="skill_id" attrs="{'invisible':[('evalution_employee','=',False)]}"/>
+                </xpath>
+                <xpath expr="//page[@name='answers']//field[@name='suggested_answer_ids']//tree//field[@name='value_image']" position="before">
+                    <field name="skill_level_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
